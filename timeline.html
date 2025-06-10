@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Timeline - Diogo Ferrata | Jornada de Projetos em Robótica e Tecnologia</title>
+    <meta name="description" content="Acompanhe a evolução dos meus projetos de 2020 a 2025: desde jogos educativos até soluções IoT inovadoras. Uma jornada de impacto social através da tecnologia.">
+    <meta name="keywords" content="timeline projetos, robótica educacional, IoT, desenvolvimento web, STEAM, impacto social, Diogo Ferrata">
+    <meta name="author" content="Diogo Ferrata">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Timeline - Diogo Ferrata | Jornada de Projetos em Robótica e Tecnologia">
+    <meta property="og:description" content="Acompanhe a evolução dos meus projetos de 2020 a 2025: desde jogos educativos até soluções IoT inovadoras.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://diogoferrata.com/timeline.html">
+    <meta property="og:image" content="https://diogoferrata.com/img/diogo-ferrata-logo.png">
+    <meta property="og:locale" content="pt_BR">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Timeline - Diogo Ferrata | Jornada de Projetos">
+    <meta name="twitter:description" content="Evolução de projetos de impacto social através da tecnologia desde 2020.">
+    <meta name="twitter:image" content="https://diogoferrata.com/img/diogo-ferrata-logo.png">
+    
+    <!-- Performance Tags -->
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
+    
+    <!-- Preconnect para performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Jomolhari&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="global.css?v=2025010703">
+    <link rel="stylesheet" href="style.css?v=2025010703">
+    <link rel="stylesheet" href="timeline.css?v=2025010703">
+    
+    <!-- Preload crítico -->
+    <link rel="preload" href="./img/diogo-ferrata-logo.png" as="image">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-wrapper">
+                    <div class="logo-container">
+                        <img src="./img/diogo-ferrata-logo.png" alt="Diogo Ferrata" class="logo-img">
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aboutme.html">About me</a></li>
+                    <li><a href="timeline.html" class="active">Timeline</a></li>
+                    <li><a href="contato.html" class="contact-link">CONTATO</a></li>
+                </ul>
+            </nav>
+            
+            <div class="cta-section">
+                <a href="comece-agora.html" class="cta-btn">COMECE AGORA</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="timeline-hero">
+        <div class="timeline-hero-overlay"></div>
+        <div class="timeline-hero-content">
+            <h1 class="timeline-hero-title">Minha Jornada</h1>
+            <p class="timeline-hero-subtitle">2020 - 2025 • De jogos educativos a soluções tecnológicas de impacto</p>
+        </div>
+    </section>
+
+    <!-- Timeline Content -->
+    <main class="timeline-main">
+        <!-- Filters Section -->
+        <section class="timeline-filters">
+            <div class="container">
+                <div class="filters-header">
+                    <h2>Explore Meus Projetos</h2>
+                    <p>Filtre por categoria ou visualize cronologicamente</p>
+                </div>
+                
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">Todos os Projetos</button>
+                    <button class="filter-btn" data-filter="education">Educação & STEAM</button>
+                    <button class="filter-btn" data-filter="web">Desenvolvimento Web</button>
+                    <button class="filter-btn" data-filter="iot">IoT & Tecnologia</button>
+                    <button class="filter-btn" data-filter="design">Design & Comunicação</button>
+                    <button class="filter-btn" data-filter="health">Saúde & Bem-estar</button>
+                </div>
+                
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="timeline">
+                        <span class="view-icon">|</span>
+                        Timeline
+                    </button>
+                    <button class="view-btn" data-view="grid">
+                        <span class="view-icon">■</span>
+                        Grade
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="timeline-section">
+            <div class="container">
+                <div class="timeline-wrapper" id="timelineContainer">
+                    
+                    <!-- 2020 Project -->
+                    <!-- Para adicionar link do projeto, substitua # pela URL: data-project-url="https://seulink.com" -->
+                    <div class="timeline-item" data-year="2020" data-category="education health" data-project-url="#">
+                        <div class="timeline-marker">
+                            <span class="timeline-year">2020</span>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="project-card clickable-project">
+                                <div class="project-header">
+                                    <h3 class="project-title">A Torre de Alendar</h3>
+                                    <div class="project-badges">
+                                        <span class="badge education">Educação</span>
+                                        <span class="badge health">Saúde</span>
+                                    </div>
+                                </div>
+                                
+                                <p class="project-description">
+                                    Um jogo de tabuleiro em estilo RPG voltado para crianças com autismo, com foco em educação física assistiva. A cada casa avançada no tabuleiro, a criança realizava um tipo diferente de exercício físico, promovendo o desenvolvimento motor, a coordenação e a socialização.
+                                </p>
+                                
+                                <div class="project-details">
+                                    <div class="detail-section">
+                                        <h4>Objetivo Principal</h4>
+                                        <p>Promover desenvolvimento motor e socialização em crianças com TEA através de jogos colaborativos e atividades físicas estruturadas.</p>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Tecnologias & Soluções</h4>
+                                        <ul>
+                                            <li>Design de jogos educativos</li>
+                                            <li>Metodologia RPG adaptada</li>
+                                            <li>Atividades físicas terapêuticas</li>
+                                            <li>Gamificação inclusiva</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Impacto Social</h4>
+                                        <p>A prática de atividades físicas é essencial para crianças com TEA, e o caráter colaborativo do jogo estimulava a convivência e o trabalho em grupo, promovendo inclusão social.</p>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Relevância Pessoal</h4>
+                                        <p><strong>Champion's Award conquistado</strong> - Este projeto marcou o nascimento da minha paixão por tecnologia e educação com propósito social.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2021 Project -->
+                    <div class="timeline-item" data-year="2021" data-category="iot" data-project-url="#">
+                        <div class="timeline-marker">
+                            <span class="timeline-year">2021</span>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="project-card clickable-project">
+                                <div class="project-header">
+                                    <h3 class="project-title">Peltier Box</h3>
+                                    <div class="project-badges">
+                                        <span class="badge iot">IoT</span>
+                                        <span class="badge logistics">Logística</span>
+                                    </div>
+                                </div>
+                                
+                                <p class="project-description">
+                                    Projeto voltado para a melhoria do delivery de alimentos: uma caixa térmica inteligente com controle de temperatura utilizando módulos Peltier para manter a qualidade dos alimentos durante o transporte.
+                                </p>
+                                
+                                <div class="project-details">
+                                    <div class="detail-section">
+                                        <h4>Objetivo Principal</h4>
+                                        <p>Manter a qualidade dos alimentos durante o transporte feito por aplicativos como iFood, reduzindo insatisfações e melhorando a experiência do consumidor.</p>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Tecnologias & Soluções</h4>
+                                        <ul>
+                                            <li>Módulos Peltier (efeito termoelétrico)</li>
+                                            <li>Controle de temperatura inteligente</li>
+                                            <li>Sistema de refrigeração eficiente</li>
+                                            <li>Design otimizado para delivery</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Impacto Social</h4>
+                                        <p>Geração de economia para restaurantes, melhoria da experiência do consumidor e redução do desperdício de alimentos através de tecnologia sustentável.</p>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Relevância Pessoal</h4>
+                                        <p>Primeiro projeto focado em <strong>logística e eficiência energética</strong>, consolidando meu interesse por soluções IoT práticas.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2022 Project -->
+                    <div class="timeline-item" data-year="2022" data-category="iot" data-project-url="#">
+                        <div class="timeline-marker">
+                            <span class="timeline-year">2022</span>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="project-card clickable-project">
+                                <div class="project-header">
+                                    <h3 class="project-title">Smart Valve</h3>
+                                    <div class="project-badges">
+                                        <span class="badge iot">IoT</span>
+                                        <span class="badge security">Segurança</span>
+                                    </div>
+                                </div>
+                                
+                                <p class="project-description">
+                                    Uma válvula inteligente para botijões de gás com controle via aplicativo, permitindo selecionar modos de consumo, detectar vazamentos e controlar remotamente a abertura da válvula.
+                                </p>
+                                
+                                <div class="project-details">
+                                    <div class="detail-section">
+                                        <h4>Objetivo Principal</h4>
+                                        <p>Gerar economia doméstica, aumentar a segurança residencial e promover o uso consciente de energia através de tecnologia inteligente.</p>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Tecnologias & Soluções</h4>
+                                        <ul>
+                                            <li>Controle via aplicativo móvel</li>
+                                            <li>Três modos de consumo (1, 2 ou todas as bocas)</li>
+                                            <li>Sensor de detecção de vazamentos</li>
+                                            <li>Controle remoto de válvulas</li>
+                                            <li>Sistema de segurança integrado</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Impacto Social</h4>
+                                        <p>Redução de acidentes domésticos, economia de recursos energéticos e promoção do uso consciente através de monitoramento inteligente.</p>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Relevância Pessoal</h4>
+                                        <p>Projeto prático e inovador que consolidou minha expertise em <strong>IoT aplicada ao cotidiano</strong> e segurança residencial.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2023 Project -->
+                    <div class="timeline-item" data-year="2023" data-category="education" data-project-url="#">
+                        <div class="timeline-marker">
+                            <span class="timeline-year">2023</span>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="project-card clickable-project">
+                                <div class="project-header">
+                                    <h3 class="project-title">Gear Up Arts</h3>
+                                    <div class="project-badges">
+                                        <span class="badge education">STEAM</span>
+                                        <span class="badge social">Impacto Social</span>
+                                    </div>
+                                </div>
+                                
+                                <p class="project-description">
+                                    Um manual com projetos STEAM acessíveis, criado para ensinar ciência e tecnologia de forma divertida e inclusiva. Inclui o Pianobô (piano com Arduino) e o Beat Robot (robô de baixo custo ativado por som).
+                                </p>
+                                
+                                <div class="project-details">
+                                    <div class="detail-section">
+                                        <h4>Objetivo Principal</h4>
+                                        <p>Democratizar o ensino STEAM através de projetos acessíveis que despertem o interesse de crianças de comunidades carentes pela robótica e tecnologia.</p>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Tecnologias & Soluções</h4>
+                                        <ul>
+                                            <li><strong>Pianobô:</strong> Arduino + música + programação</li>
+                                            <li><strong>Beat Robot:</strong> Robô ativado por som de baixo custo</li>
+                                            <li>Manual didático com projetos step-by-step</li>
+                                            <li>Materiais acessíveis e reutilizáveis</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Impacto Social</h4>
+                                        <p>Mais de <strong>160 crianças impactadas</strong> em parceria com a Rockwell Automation, levando educação STEAM para comunidades carentes de forma acessível.</p>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Relevância Pessoal</h4>
+                                        <p>Marco na minha jornada de <strong>tecnologia com propósito social</strong>, unindo criatividade, educação e transformação social de forma concreta.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2024 Project 1 -->
+                    <div class="timeline-item" data-year="2024" data-category="education health" data-project-url="#">
+                        <div class="timeline-marker">
+                            <span class="timeline-year">2024</span>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="project-card clickable-project">
+                                <div class="project-header">
+                                    <h3 class="project-title">Gear Up LEGO (GRAACC)</h3>
+                                    <div class="project-badges">
+                                        <span class="badge education">Educação</span>
+                                        <span class="badge health">Saúde</span>
+                                    </div>
+                                </div>
+                                
+                                <p class="project-description">
+                                    Adaptação dos projetos do Gear Up para o ambiente hospitalar, aplicada no GRAACC (Grupo de Apoio ao Adolescente e à Criança com Câncer), proporcionando momentos de aprendizado durante o tratamento.
+                                </p>
+                                
+                                <div class="project-details">
+                                    <div class="detail-section">
+                                        <h4>Objetivo Principal</h4>
+                                        <p>Proporcionar momentos de aprendizado, alegria e criatividade durante o tratamento médico, usando tecnologia de forma sensível e humanizada.</p>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Tecnologias & Soluções</h4>
+                                        <ul>
+                                            <li>Adaptação dos projetos Gear Up para hospitais</li>
+                                            <li>LEGO Education para terapia lúdica</li>
+                                            <li>Atividades STEAM adaptadas ao ambiente médico</li>
+                                            <li>Protocolos de segurança hospitalar</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Impacto Social</h4>
+                                        <p>Aplicação de tecnologia educativa em ambiente de cuidados médicos, promovendo bem-estar e aprendizado durante momentos difíceis.</p>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Relevância Pessoal</h4>
+                                        <p><strong>Experiência transformadora</strong> que demonstrou como aplicar conhecimento técnico com empatia e responsabilidade social no contexto da saúde.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2024 Project 2 -->
+                    <div class="timeline-item" data-year="2024" data-category="design" data-project-url="#">
+                        <div class="timeline-marker">
+                            <span class="timeline-year">2024</span>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="project-card clickable-project">
+                                <div class="project-header">
+                                    <h3 class="project-title">Design Gráfico - Robonáticos 7565</h3>
+                                    <div class="project-badges">
+                                        <span class="badge design">Design</span>
+                                        <span class="badge communication">Comunicação</span>
+                                    </div>
+                                </div>
+                                
+                                <p class="project-description">
+                                    Desenvolvimento de diversos materiais gráficos para a equipe Robonáticos 7565, incluindo banners, portfólios, livros da equipe e planos de patrocínio para fortalecer a comunicação visual estratégica.
+                                </p>
+                                
+                                <div class="project-details">
+                                    <div class="detail-section">
+                                        <h4>Objetivo Principal</h4>
+                                        <p>Fortalecer a identidade visual e comunicação estratégica da equipe, representando seu impacto e valor dentro e fora das competições de robótica.</p>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Tecnologias & Soluções</h4>
+                                        <ul>
+                                            <li>Design de banners e materiais promocionais</li>
+                                            <li>Criação de portfólios profissionais</li>
+                                            <li>Desenvolvimento de livros da equipe</li>
+                                            <li>Elaboração de planos de patrocínio</li>
+                                            <li>Identidade visual coesa e profissional</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Impacto Social</h4>
+                                        <p>Fortalecimento da comunicação da equipe, facilitando parcerias e patrocínios que viabilizam projetos de impacto social na robótica educacional.</p>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Relevância Pessoal</h4>
+                                        <p>Consolidação da minha expertise em <strong>comunicação visual estratégica</strong> e design aplicado ao contexto da robótica competitiva.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2025 Projects -->
+                    <div class="timeline-item" data-year="2025" data-category="web" data-project-url="#">
+                        <div class="timeline-marker">
+                            <span class="timeline-year">2025</span>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="project-card clickable-project multi-project">
+                                <div class="project-header">
+                                    <h3 class="project-title">Projetos de Desenvolvimento Web 2025</h3>
+                                    <div class="project-badges">
+                                        <span class="badge web">Desenvolvimento Web</span>
+                                        <span class="badge innovation">Inovação</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="multi-projects">
+                                    <!-- FIRST Site -->
+                                    <div class="sub-project">
+                                        <h4>Releitura do Site da FIRST</h4>
+                                        <p>Site inspirado na organização FIRST com experiência digital envolvente, seções estruturadas, conteúdo educativo e navegação fluida, homenageando a trajetória da FIRST.</p>
+                                        <div class="sub-project-tech">
+                                            <span>Design Responsivo</span>
+                                            <span>UX/UI Moderno</span>
+                                            <span>Desenvolvimento Web</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Solar System -->
+                                    <div class="sub-project">
+                                        <h4>Sistema Solar com Keyframes</h4>
+                                        <p>Site interativo que simula um sistema solar animado utilizando Keyframes em CSS, combinando criatividade, ciência e programação para criar experiência visual didática.</p>
+                                        <div class="sub-project-tech">
+                                            <span>CSS Animations</span>
+                                            <span>Keyframes</span>
+                                            <span>Design Interativo</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Hospital Site -->
+                                    <div class="sub-project">
+                                        <h4>Site Hospitalar Humanizado</h4>
+                                        <p>Projeto com funcionalidades avançadas focado em atendimento humanizado, incluindo agendamento online, área do paciente e seções informativas com acessibilidade.</p>
+                                        <div class="sub-project-tech">
+                                            <span>Funcionalidades Avançadas</span>
+                                            <span>Acessibilidade</span>
+                                            <span>UX Humanizado</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Restaurant Site -->
+                                    <div class="sub-project">
+                                        <h4>Site "Sabores da Terra"</h4>
+                                        <p>Site profissional para restaurante desenvolvido como destaque no curso SENAI, valorizando design elegante, menus interativos e foco na experiência do cliente.</p>
+                                        <div class="sub-project-tech">
+                                            <span>UX/UI</span>
+                                            <span>Menus Interativos</span>
+                                            <span>Design Profissional</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-details">
+                                    <div class="detail-section">
+                                        <h4>Objetivo Principal</h4>
+                                        <p>Aprimorar habilidades em desenvolvimento web profissional, criando soluções que alinham tecnologia, design e experiência do usuário para diferentes setores.</p>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Impacto Social</h4>
+                                        <p>Desenvolvimento de interfaces que priorizam acessibilidade, humanização e experiência do usuário, especialmente em contextos sensíveis como saúde.</p>
+                                    </div>
+                                    
+                                    <div class="detail-section">
+                                        <h4>Relevância Pessoal</h4>
+                                        <p><strong>Consolidação como desenvolvedor web profissional</strong> através de projetos diversificados que demonstram versatilidade técnica e sensibilidade para diferentes públicos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="timeline-stats">
+            <div class="container">
+                <div class="stats-header">
+                    <h2>Minha Jornada em Números</h2>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">Anos de Experiência</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">12+</span>
+                        <span class="stat-label">Projetos Desenvolvidos</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Pessoas Impactadas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Prêmios Conquistados</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <div class="logo">
+                    <img src="./img/diogo-ferrata-logo.png" alt="Diogo Ferrata" class="logo-img">
+                    <div class="logo-text">
+                        <span class="company-name">Diogo Ferrata.</span>
+                    </div>
+                </div>
+                <p class="footer-description">Navegue por sites e experiências desenvolvidos pelo melhor desenvolvedor web de São Paulo!</p>
+            </div>
+            
+            <div class="footer-right">
+                <div class="footer-column">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="aboutme.html">About me</a></li>
+                        <li><a href="timeline.html">Timeline</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                        <li><a href="comece-agora.html">Comece Agora</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <p class="address">
+                        Naviraí, MS<br>
+                        Brasil
+                    </p>
+                    <p class="phone">Tel: (11) 94532-8823</p>
+                    <p class="email">
+                        E-Mail:<br>
+                        diogoferrafm@gmail.com
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Redes sociais</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" title="Instagram">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" title="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Diogo Ferrata. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Botão Scroll to Top -->
+    <button id="scrollToTop" class="scroll-to-top" title="Voltar ao topo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m18 15-6-6-6 6"/>
+        </svg>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="script.js?v=2025010703"></script>
+    <script src="timeline.js?v=2025010703"></script>
+</body>
+</html> 

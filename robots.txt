@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://diogoferrata.com/sitemap.xml
+
+# Permitir acesso a todos os arquivos CSS e JS
+Allow: *.css
+Allow: *.js
+
+# Permitir acesso a todas as imagens
+Allow: /img/
+
+# Páginas principais
+Allow: /index.html
+Allow: /aboutme.html
+Allow: /comece-agora.html
+Allow: /contato.html
+
+# Crawl-delay (opcional, para não sobrecarregar o servidor)
+Crawl-delay: 1 
