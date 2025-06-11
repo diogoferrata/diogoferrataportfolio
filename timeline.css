@@ -517,6 +517,48 @@
     padding: 20px;
     margin-bottom: 20px;
     border-left: 3px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.sub-project:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-left-color: #4A90E2;
+    transform: translateX(5px);
+}
+
+.project-link {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.project-link:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.project-link::after {
+    content: '→';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 16px;
+    font-weight: bold;
+    opacity: 0;
+    transition: all 0.3s ease;
+    transform: translateX(-10px);
+}
+
+.sub-project:hover .project-link::after {
+    opacity: 1;
+    color: #4A90E2;
+    transform: translateX(0);
 }
 
 .sub-project h4 {
