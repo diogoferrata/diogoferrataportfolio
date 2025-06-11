@@ -154,6 +154,9 @@ body {
     align-items: center;
     justify-content: center;
     transition: var(--transition-medium);
+    background: none;
+    border-radius: 0;
+    border: none;
 }
 
 .logo-img {
@@ -161,6 +164,9 @@ body {
     width: auto;
     object-fit: contain;
     transition: var(--transition-medium);
+    border-radius: 0;
+    border: none;
+    background: none;
 }
 
 /* Navigation com Glassmorphism Aprimorado */
