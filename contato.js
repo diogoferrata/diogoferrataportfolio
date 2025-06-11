@@ -1,4 +1,88 @@
-// Contact Page - Enhanced JavaScript
+// Contact Page - Enhanced JavaScript - Optimized Version
+
+// Utilities object to hold reusable functions
+const ContactUtils = {
+    // Form validation utilities
+    validateField(field) {
+        const value = field.value.trim();
+        const fieldType = field.type;
+        const isRequired = field.hasAttribute('required');
+        
+        this.clearFieldError(field);
+
+        if (isRequired && !value) {
+            this.showFieldError(field, 'Este campo é obrigatório');
+            return false;
+        }
+
+        if (fieldType === 'email' && value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) {
+                this.showFieldError(field, 'Por favor, insira um e-mail válido');
+                return false;
+            }
+        }
+
+        if (fieldType === 'tel' && value) {
+            const phoneRegex = /^[\d\s\(\)\-\+]{10,}$/;
+            if (!phoneRegex.test(value)) {
+                this.showFieldError(field, 'Por favor, insira um telefone válido');
+                return false;
+            }
+        }
+
+        this.showFieldSuccess(field);
+        return true;
+    },
+
+    showFieldError(field, message) {
+        const formGroup = field.parentElement;
+        const existingError = formGroup.querySelector('.error-message');
+        
+        if (existingError) {
+            existingError.remove();
+        }
+
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = message;
+        formGroup.appendChild(errorDiv);
+
+        field.style.borderColor = '#ff6b6b';
+        field.style.background = 'rgba(255, 107, 107, 0.1)';
+    },
+
+    showFieldSuccess(field) {
+        field.style.borderColor = '#51cf66';
+        field.style.background = 'rgba(81, 207, 102, 0.1)';
+    },
+
+    clearFieldError(field) {
+        const formGroup = field.parentElement;
+        const existingError = formGroup.querySelector('.error-message');
+        
+        if (existingError) {
+            existingError.remove();
+        }
+
+        field.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        field.style.background = 'rgba(255, 255, 255, 0.05)';
+    },
+
+    // Throttle function for performance
+    throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        }
+    }
+};
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all contact page features
@@ -9,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScrolling();
     initHoverAnimations();
     initTypingEffect();
+    initMobileOptimizations();
 });
 
 // Smooth scrolling for internal links
@@ -27,7 +112,7 @@ function initSmoothScrolling() {
     });
 }
 
-// Scroll reveal animations
+// Optimized scroll reveal animations
 function initScrollRevealAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -38,7 +123,7 @@ function initScrollRevealAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-in');
-                observer.unobserve(entry.target);
+                observer.unobserve(entry.target); // Remove observer after animation
             }
         });
     }, observerOptions);
@@ -55,12 +140,12 @@ function initScrollRevealAnimations() {
     elementsToAnimate.forEach((el, index) => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
-        el.style.transition = `opacity 0.6s ease ${index * 0.15}s, transform 0.6s ease ${index * 0.15}s`;
+        el.style.transition = `opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`;
         observer.observe(el);
     });
 }
 
-// Subtle parallax effect for hero section
+// Optimized parallax effect for hero section
 function initParallaxEffect() {
     const hero = document.querySelector('.contact-hero');
     if (!hero) return;
@@ -69,51 +154,55 @@ function initParallaxEffect() {
 
     function updateParallax() {
         const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.2;
+        const rate = scrolled * -0.15; // Reduced for better performance
         
-        hero.style.transform = `translateY(${rate}px)`;
+        hero.style.transform = `translate3d(0, ${rate}px, 0)`; // Use translate3d for hardware acceleration
         ticking = false;
     }
 
-    function requestTick() {
+    const throttledParallax = ContactUtils.throttle(() => {
         if (!ticking) {
             requestAnimationFrame(updateParallax);
             ticking = true;
         }
-    }
+    }, 16); // ~60fps
 
-    window.addEventListener('scroll', requestTick);
+    window.addEventListener('scroll', throttledParallax, { passive: true });
 }
 
-// Enhanced hover animations
+// Enhanced hover animations with performance optimization
 function initHoverAnimations() {
-    // Info cards floating animation
-    const infoCards = document.querySelectorAll('.info-card');
-    infoCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px) scale(1.02)';
-            this.style.boxShadow = '0 15px 40px rgba(255, 255, 255, 0.1)';
+    // Only apply hover effects on non-touch devices
+    if (!window.matchMedia('(hover: none)').matches) {
+        // Info cards floating animation
+        const infoCards = document.querySelectorAll('.info-card');
+        infoCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+                this.style.boxShadow = '0 15px 40px rgba(255, 255, 255, 0.1)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = 'none';
+            });
         });
 
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-            this.style.boxShadow = 'none';
-        });
-    });
+        // Social links animation
+        const socialLinks = document.querySelectorAll('.social-link');
+        socialLinks.forEach((link, index) => {
+            link.addEventListener('mouseenter', function() {
+                const rotation = 5 + (index * 2);
+                this.style.transform = `translateY(-3px) scale(1.1) rotate(${rotation}deg)`;
+            });
 
-    // Social links animation
-    const socialLinks = document.querySelectorAll('.social-link');
-    socialLinks.forEach(link => {
-        link.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-3px) scale(1.1) rotate(5deg)';
+            link.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+            });
         });
+    }
 
-        link.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1) rotate(0deg)';
-        });
-    });
-
-    // Form inputs focus animation
+    // Form inputs focus animation (works on all devices)
     const formInputs = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
     formInputs.forEach(input => {
         input.addEventListener('focus', function() {
@@ -126,7 +215,7 @@ function initHoverAnimations() {
     });
 }
 
-// Typing effect for hero title
+// Optimized typing effect for hero title
 function initTypingEffect() {
     const heroTitle = document.querySelector('.contact-hero-title');
     if (!heroTitle) return;
@@ -136,7 +225,7 @@ function initTypingEffect() {
     heroTitle.style.borderRight = '3px solid rgba(255, 255, 255, 0.8)';
     
     let i = 0;
-    const speed = 100;
+    const speed = 80; // Slightly faster
 
     function typeWriter() {
         if (i < text.length) {
@@ -155,102 +244,40 @@ function initTypingEffect() {
     setTimeout(typeWriter, 500);
 }
 
-// Form validation
+// Optimized form validation using utilities
 function initFormValidation() {
     const form = document.getElementById('contactForm');
+    if (!form) return;
+    
     const inputs = form.querySelectorAll('input, select, textarea');
 
     inputs.forEach(input => {
         input.addEventListener('blur', function() {
-            validateField(this);
+            ContactUtils.validateField(this);
         });
 
-        input.addEventListener('input', function() {
-            clearFieldError(this);
-        });
+        input.addEventListener('input', ContactUtils.throttle(function() {
+            ContactUtils.clearFieldError(this);
+        }, 300)); // Throttle input events
     });
-
-    function validateField(field) {
-        const value = field.value.trim();
-        const fieldType = field.type;
-        const isRequired = field.hasAttribute('required');
-        
-        clearFieldError(field);
-
-        if (isRequired && !value) {
-            showFieldError(field, 'Este campo é obrigatório');
-            return false;
-        }
-
-        if (fieldType === 'email' && value) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(value)) {
-                showFieldError(field, 'Por favor, insira um e-mail válido');
-                return false;
-            }
-        }
-
-        if (fieldType === 'tel' && value) {
-            const phoneRegex = /^[\d\s\(\)\-\+]{10,}$/;
-            if (!phoneRegex.test(value)) {
-                showFieldError(field, 'Por favor, insira um telefone válido');
-                return false;
-            }
-        }
-
-        showFieldSuccess(field);
-        return true;
-    }
-
-    function showFieldError(field, message) {
-        const formGroup = field.parentElement;
-        const existingError = formGroup.querySelector('.error-message');
-        
-        if (existingError) {
-            existingError.remove();
-        }
-
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'error-message';
-        errorDiv.textContent = message;
-        formGroup.appendChild(errorDiv);
-
-        field.style.borderColor = '#ff6b6b';
-        field.style.background = 'rgba(255, 107, 107, 0.1)';
-    }
-
-    function showFieldSuccess(field) {
-        field.style.borderColor = '#51cf66';
-        field.style.background = 'rgba(81, 207, 102, 0.1)';
-    }
-
-    function clearFieldError(field) {
-        const formGroup = field.parentElement;
-        const existingError = formGroup.querySelector('.error-message');
-        
-        if (existingError) {
-            existingError.remove();
-        }
-
-        field.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-        field.style.background = 'rgba(255, 255, 255, 0.05)';
-    }
 }
 
-// Form submission with loading animation
+// Optimized form submission using utilities
 function initFormSubmission() {
     const form = document.getElementById('contactForm');
+    if (!form) return;
+    
     const submitBtn = form.querySelector('.submit-btn');
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        // Validate all fields
+        // Validate all fields using utility function
         const inputs = form.querySelectorAll('input, select, textarea');
         let isValid = true;
 
         inputs.forEach(input => {
-            if (!validateField(input)) {
+            if (!ContactUtils.validateField(input)) {
                 isValid = false;
             }
         });
@@ -278,76 +305,37 @@ function initFormSubmission() {
             
             // Clear field styles
             inputs.forEach(input => {
-                input.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                input.style.background = 'rgba(255, 255, 255, 0.05)';
+                ContactUtils.clearFieldError(input);
             });
 
         }, 2000);
     });
+}
 
-    // Helper function for field validation (reused from initFormValidation)
-    function validateField(field) {
-        const value = field.value.trim();
-        const fieldType = field.type;
-        const isRequired = field.hasAttribute('required');
+// Mobile-specific optimizations
+function initMobileOptimizations() {
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // Disable complex animations on mobile
+        document.body.classList.add('mobile-device');
         
-        clearFieldError(field);
-
-        if (isRequired && !value) {
-            showFieldError(field, 'Este campo é obrigatório');
-            return false;
+        // Reduce parallax intensity on mobile
+        const hero = document.querySelector('.contact-hero');
+        if (hero) {
+            hero.style.backgroundAttachment = 'scroll';
         }
-
-        if (fieldType === 'email' && value) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(value)) {
-                showFieldError(field, 'Por favor, insira um e-mail válido');
-                return false;
-            }
-        }
-
-        if (fieldType === 'tel' && value) {
-            const phoneRegex = /^[\d\s\(\)\-\+]{10,}$/;
-            if (!phoneRegex.test(value)) {
-                showFieldError(field, 'Por favor, insira um telefone válido');
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    function showFieldError(field, message) {
-        const formGroup = field.parentElement;
-        const existingError = formGroup.querySelector('.error-message');
         
-        if (existingError) {
-            existingError.remove();
-        }
-
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'error-message';
-        errorDiv.textContent = message;
-        formGroup.appendChild(errorDiv);
-
-        field.style.borderColor = '#ff6b6b';
-        field.style.background = 'rgba(255, 107, 107, 0.1)';
-    }
-
-    function clearFieldError(field) {
-        const formGroup = field.parentElement;
-        const existingError = formGroup.querySelector('.error-message');
-        
-        if (existingError) {
-            existingError.remove();
-        }
-
-        field.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-        field.style.background = 'rgba(255, 255, 255, 0.05)';
+        // Optimize form for mobile
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            // Prevent zoom on iOS when focusing inputs
+            input.style.fontSize = '16px';
+        });
     }
 }
 
-// Notification system
+// Enhanced notification system
 function showNotification(message, type = 'success') {
     // Remove existing notifications
     const existingNotification = document.querySelector('.notification');
@@ -357,7 +345,12 @@ function showNotification(message, type = 'success') {
 
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
-    notification.textContent = message;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-icon">${type === 'success' ? '✓' : '⚠'}</span>
+            <span class="notification-text">${message}</span>
+        </div>
+    `;
 
     document.body.appendChild(notification);
 
@@ -377,7 +370,7 @@ function showNotification(message, type = 'success') {
     }, 5000);
 }
 
-// Add enhanced CSS for animations and notifications
+// Enhanced CSS with mobile optimizations
 const style = document.createElement('style');
 style.textContent = `
     .animate-in {
@@ -395,23 +388,22 @@ style.textContent = `
     }
 
     @keyframes fadeInError {
-        to {
-            opacity: 1;
-        }
+        to { opacity: 1; }
     }
 
+    /* Enhanced notification system */
     .notification {
         position: fixed;
         top: 30px;
         right: 30px;
         background: rgba(81, 207, 102, 0.95);
         color: white;
-        padding: 15px 25px;
+        padding: 15px 20px;
         border-radius: 12px;
         font-family: 'Montserrat', sans-serif;
         font-size: 0.9rem;
         font-weight: 500;
-        z-index: 10000;
+        z-index: 500;
         transform: translateX(400px);
         transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         backdrop-filter: blur(10px);
@@ -428,34 +420,67 @@ style.textContent = `
         transform: translateX(0);
     }
 
+    .notification-content {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .notification-icon {
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+
     /* Enhanced form styling */
     .form-group {
-        transition: transform 0.2s ease;
+        transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-        transform: scale(1.02);
+        transform: scale(1.01);
     }
 
-    /* Floating animation for contact cards */
-    @keyframes float {
+    /* Optimized floating animation */
+    @keyframes floatSubtle {
         0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-5px); }
+        50% { transform: translateY(-3px); }
     }
 
     .info-card:nth-child(odd) {
-        animation: float 6s ease-in-out infinite;
+        animation: floatSubtle 4s ease-in-out infinite;
     }
 
     .info-card:nth-child(even) {
-        animation: float 6s ease-in-out infinite 1s;
+        animation: floatSubtle 4s ease-in-out infinite 1s;
     }
 
-    /* Responsive: Disable complex animations on mobile */
+    /* Loading button animation */
+    .submit-btn.loading {
+        pointer-events: none;
+        opacity: 0.7;
+    }
+
+    .submit-btn.loading::after {
+        content: '';
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border: 2px solid transparent;
+        border-top: 2px solid currentColor;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-left: 10px;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Mobile optimizations */
     @media (max-width: 768px) {
-        .info-card {
+        .mobile-device .info-card {
             animation: none !important;
         }
         
@@ -465,17 +490,48 @@ style.textContent = `
             left: 20px;
             transform: translateY(-100px);
             max-width: none;
+            font-size: 0.85rem;
+            padding: 12px 16px;
         }
         
         .notification.show {
             transform: translateY(0);
         }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            transform: none; /* Disable scale on mobile */
+        }
     }
 
+    @media (max-width: 480px) {
+        .notification {
+            top: 15px;
+            right: 15px;
+            left: 15px;
+            font-size: 0.8rem;
+            padding: 10px 14px;
+        }
+    }
+
+    /* Accessibility and performance */
     @media (prefers-reduced-motion: reduce) {
         * {
             animation: none !important;
             transition: none !important;
+        }
+        
+        .notification {
+            transition: none !important;
+        }
+    }
+
+    /* Touch device optimizations */
+    @media (hover: none) and (pointer: coarse) {
+        .info-card:hover,
+        .social-link:hover {
+            transform: none !important;
         }
     }
 `;

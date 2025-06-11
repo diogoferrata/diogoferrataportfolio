@@ -12,6 +12,7 @@
    ==================================================== */
 .hero {
     height: 100vh;
+    min-height: 600px;
     background-image: url('./img/1.jpg');
     background-size: cover;
     background-position: center;
@@ -52,21 +53,23 @@
 
 .hero h1 {
     font-family: var(--font-title);
-    font-size: 4.5rem;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
     font-weight: 400;
     margin-bottom: 20px;
     letter-spacing: 2px;
     color: var(--primary-text);
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    line-height: 1.1;
 }
 
 .hero p {
     font-family: var(--font-primary);
-    font-size: 1.3rem;
+    font-size: clamp(1rem, 3vw, 1.3rem);
     opacity: 0.95;
     font-weight: 300;
     color: var(--secondary-text);
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    line-height: 1.4;
 }
 
 /* ====================================================
@@ -101,14 +104,22 @@
     max-width: 700px;
     margin: 0 auto;
     padding: 50px;
-    background: var(--glass-bg-light);
-    backdrop-filter: var(--blur-medium);
-    -webkit-backdrop-filter: var(--blur-medium);
+    background: var(--glass-bg-medium);
+    backdrop-filter: var(--blur-strong);
+    -webkit-backdrop-filter: var(--blur-strong);
     border: 1px solid var(--glass-border);
     border-radius: 25px;
     box-shadow: var(--shadow-glass);
     position: relative;
     z-index: 1;
+    transition: var(--transition-medium);
+}
+
+.content-container:hover {
+    background: var(--glass-bg-strong);
+    border-color: var(--glass-border-hover);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: var(--shadow-strong);
 }
 
 .content-container::before {
@@ -127,7 +138,7 @@
 
 .main-title {
     font-family: var(--font-title);
-    font-size: 3.2rem;
+    font-size: clamp(2rem, 5vw, 3.2rem);
     font-weight: 400;
     color: var(--primary-text);
     margin-bottom: 2rem;
@@ -138,7 +149,7 @@
 
 .main-description {
     font-family: var(--font-secondary);
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     color: var(--secondary-text);
     margin-bottom: 3rem;
     line-height: 1.8;
@@ -156,7 +167,7 @@
     border: 1px solid var(--glass-border);
     color: var(--primary-text);
     text-decoration: none;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     font-weight: 500;
     font-family: var(--font-primary);
     letter-spacing: 0.5px;
@@ -186,11 +197,11 @@
 }
 
 .portfolio-btn:hover {
-    background: var(--glass-bg-medium);
+    background: var(--glass-bg-strong);
     border-color: var(--glass-border-hover);
     color: var(--primary-text);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: var(--shadow-medium);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: var(--shadow-strong);
 }
 
 /* ====================================================
@@ -198,13 +209,14 @@
    ==================================================== */
 .footer {
     background: linear-gradient(135deg, 
-                rgba(17, 17, 17, 0.9) 0%, 
-                rgba(10, 10, 10, 0.95) 100%);
-    backdrop-filter: var(--blur-medium);
-    -webkit-backdrop-filter: var(--blur-medium);
-    border-top: 1px solid var(--glass-border);
+                rgba(17, 17, 17, 0.95) 0%, 
+                rgba(10, 10, 10, 0.98) 100%);
+    backdrop-filter: var(--blur-strong);
+    -webkit-backdrop-filter: var(--blur-strong);
+    border-top: 1px solid var(--glass-border-hover);
     padding: 3rem 0 1rem;
     position: relative;
+    box-shadow: var(--shadow-glass);
 }
 
 .footer::before {
@@ -254,14 +266,14 @@
 }
 
 .company-name {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
     font-weight: 600;
     color: #fff;
 }
 
 .footer-description {
     color: #ccc;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
     line-height: 1.6;
 }
 
@@ -277,7 +289,7 @@
 
 .footer-column h3 {
     color: #fff;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.2vw, 1.1rem);
     font-weight: 600;
     margin-bottom: 1rem;
 }
@@ -293,7 +305,7 @@
 .footer-column a {
     color: #ccc;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
     transition: color 0.3s ease;
 }
 
@@ -303,7 +315,7 @@
 
 .footer-column p {
     color: #ccc;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
     margin-bottom: 0.5rem;
     line-height: 1.6;
 }
@@ -336,6 +348,7 @@
     display: flex;
     gap: 15px;
     justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .social-link {
@@ -355,11 +368,11 @@
 }
 
 .social-link:hover {
-    background: var(--glass-bg-medium);
+    background: var(--glass-bg-strong);
     border-color: var(--glass-border-hover);
     color: var(--primary-text);
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: var(--shadow-light);
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: var(--shadow-medium);
 }
 
 .social-link svg {
@@ -378,26 +391,98 @@
 
 .footer-bottom p {
     color: #666;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 1.8vw, 0.8rem);
 }
 
-/* Responsive Design */
+/* ====================================================
+   RESPONSIVIDADE MOBILE APRIMORADA
+   ==================================================== */
+
+/* Tablet Portrait */
+@media (max-width: 1024px) {
+    .hero {
+        background-attachment: scroll;
+    }
+    
+    .about-figma {
+        padding: 80px 1.5rem;
+    }
+    
+    .content-container {
+        padding: 40px;
+        border-radius: 20px;
+    }
+    
+    .footer-container {
+        gap: 3rem;
+    }
+    
+    .footer-right {
+        gap: 3rem;
+    }
+}
+
+/* Mobile Landscape & Portrait */
 @media (max-width: 768px) {
+    .hero {
+        min-height: 500px;
+        background-attachment: scroll;
+        padding: 60px 0;
+    }
+    
+    .hero-content {
+        padding: 0 1.5rem;
+        max-width: 100%;
+    }
+    
     .hero h1 {
-        font-size: 2.5rem;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+    }
+    
+    .about-figma {
+        min-height: auto;
+        padding: 60px 1rem;
+    }
+    
+    .content-container {
+        padding: 30px 25px;
+        border-radius: 15px;
+        margin: 0 auto;
     }
     
     .main-title {
-        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.5px;
     }
     
     .main-description {
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+    
+    .portfolio-btn {
+        padding: 12px 24px;
+        width: 100%;
+        justify-content: center;
         font-size: 0.9rem;
+    }
+    
+    .footer {
+        padding: 2rem 0 1rem;
     }
     
     .footer-container {
         flex-direction: column;
         gap: 2rem;
+        padding: 0 1.5rem;
+        text-align: center;
+    }
+    
+    .footer-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     
     .footer-right {
@@ -405,104 +490,162 @@
         gap: 2rem;
     }
     
-    .content-container {
+    .footer-column {
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .social-link svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .footer-bottom {
+        padding: 1.5rem 1rem 1rem;
+        margin-top: 1.5rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .hero {
+        min-height: 400px;
+        padding: 40px 0;
+    }
+    
+    .hero-content {
         padding: 0 1rem;
     }
     
     .about-figma {
-        padding: 80px 1rem;
+        padding: 40px 0.5rem;
     }
     
-    .header-content {
-        flex-direction: column;
-        gap: 15px;
-        padding: 0 20px;
+    .content-container {
+        padding: 20px 15px;
+        border-radius: 12px;
     }
     
-    .logo-section,
-    .cta-section {
-        flex: none;
-    }
-    
-    .logo-wrapper {
-        padding: 0;
-    }
-    
-    .nav-container {
-        flex: none;
-        padding: 10px 16px;
-        width: 520px;
-        max-width: 520px;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 40px;
-    }
-    
-    .nav-links {
-        gap: 16px;
-    }
-    
-    .nav-links a {
-        font-size: 11px;
-        padding: 8px 14px;
-        letter-spacing: 0.4px;
-    }
-    
-    .contact-link {
-        margin-left: 8px;
-        padding-left: 16px !important;
-    }
-    
-    .contact-link::before {
-        left: 8px;
-        width: 1px;
-        height: 50%;
-    }
-    
-    .cta-btn {
-        font-size: 10px;
-        padding: 0 16px;
-        height: 32px;
-        letter-spacing: 0.6px;
-    }
-    
-    .logo-container {
-        height: 28px;
-    }
-    
-    .header {
-        padding: 15px 20px;
-    }
-}
-
-@media (max-width: 480px) {
     .main-title {
-        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    
+    .main-description {
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    
+    .portfolio-btn {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+        border-radius: 12px;
+    }
+    
+    .footer-container {
+        padding: 0 1rem;
+        gap: 1.5rem;
     }
     
     .footer-right {
         gap: 1.5rem;
     }
+    
+    .logo {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .logo-img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .social-links {
+        gap: 8px;
+    }
+    
+    .social-link {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+    }
+    
+    .social-link svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .footer-bottom {
+        padding: 1rem 0.5rem 0.5rem;
+        margin-top: 1rem;
+    }
 }
+
+/* Extra Small Mobile */
+@media (max-width: 320px) {
+    .hero {
+        min-height: 350px;
+        padding: 30px 0;
+    }
+    
+    .content-container {
+        padding: 15px 10px;
+        border-radius: 10px;
+    }
+    
+    .portfolio-btn {
+        padding: 8px 16px;
+        font-size: 0.7rem;
+    }
+    
+    .footer-container {
+        padding: 0 0.5rem;
+    }
+    
+    .social-link {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .social-link svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* ====================================================
+   ANIMAÇÕES E INTERAÇÕES OTIMIZADAS
+   ==================================================== */
 
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
 }
 
-/* ====================================================
-   ANIMAÇÕES E INTERAÇÕES
-   ==================================================== */
-
 /* Animações globais */
-.nav-links a,
-.logo-wrapper,
-.portfolio-btn,
-.cta-btn {
-    transition: var(--transition-default);
-    will-change: transform;
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Estados de hover aprimorados */
+/* Hover effects optimization */
 @media (hover: hover) {
     .nav-container:hover {
         transform: translateY(-1px);
@@ -513,40 +656,57 @@ html {
     }
     
     .logo-wrapper:hover {
-        transform: translateY(-3px) scale(1.02);
-        filter: drop-shadow(0 8px 16px rgba(255, 255, 255, 0.1));
+        transform: scale(1.05);
     }
     
     .portfolio-btn:hover {
-        background-color: #fff;
-        color: #000;
-        transform: translateY(-2px);
+        transform: translateY(-3px) scale(1.02);
     }
     
     .cta-btn:hover {
-        filter: drop-shadow(0 8px 20px rgba(255, 255, 255, 0.2));
+        transform: translateY(-3px) scale(1.02);
     }
 }
 
-/* Scroll reveal */
-.main-title,
-.main-description,
+/* Performance optimizations */
+.nav-links a,
+.logo-wrapper,
 .portfolio-btn,
-.footer-column {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: var(--transition-slow);
+.cta-btn,
+.social-link {
+    will-change: transform;
 }
 
-/* Estados de foco para acessibilidade */
+.main-title,
+.main-description,
+.portfolio-btn {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.main-title {
+    animation-delay: 0.2s;
+}
+
+.main-description {
+    animation-delay: 0.4s;
+}
+
+.portfolio-btn {
+    animation-delay: 0.6s;
+}
+
+/* Focus states para acessibilidade */
 .nav-links a:focus,
 .portfolio-btn:focus,
-.cta-btn:focus {
+.cta-btn:focus,
+.social-link:focus {
     outline: 2px solid rgba(255, 255, 255, 0.5);
     outline-offset: 2px;
 }
 
-/* Acessibilidade - Movimento reduzido */
+/* Redução de movimento para acessibilidade */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
@@ -557,32 +717,33 @@ html {
     html {
         scroll-behavior: auto;
     }
+    
+    .hero {
+        background-attachment: scroll;
+    }
 }
 
-/* ====================================================
-   BOTÃO VOLTAR AO TOPO
-   ==================================================== */
+/* Botão scroll to top - estilos aprimorados */
 .scroll-to-top {
     position: fixed;
     bottom: 30px;
     right: 30px;
     width: 50px;
     height: 50px;
-    background: var(--glass-bg-light);
-    backdrop-filter: var(--blur-medium);
-    -webkit-backdrop-filter: var(--blur-medium);
-    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    z-index: var(--z-top);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px);
-    transition: var(--transition-medium);
-    z-index: 1000;
-    box-shadow: var(--shadow-medium);
 }
 
 .scroll-to-top.show {
@@ -592,16 +753,14 @@ html {
 }
 
 .scroll-to-top:hover {
-    background: var(--glass-bg-medium);
-    border-color: var(--glass-border-hover);
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: var(--shadow-strong);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px) scale(1.05);
 }
 
 .scroll-to-top svg {
-    width: 24px;
-    height: 24px;
-    color: #ffffff;
+    width: 20px;
+    height: 20px;
     transition: transform 0.3s ease;
 }
 
@@ -609,16 +768,59 @@ html {
     transform: translateY(-2px);
 }
 
+/* Mobile scroll to top adjustments */
 @media (max-width: 768px) {
     .scroll-to-top {
         bottom: 20px;
         right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .scroll-to-top svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll-to-top {
+        bottom: 15px;
+        right: 15px;
         width: 40px;
         height: 40px;
     }
-
+    
     .scroll-to-top svg {
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
     }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .nav-links a:hover,
+    .portfolio-btn:hover,
+    .cta-btn:hover,
+    .social-link:hover,
+    .scroll-to-top:hover {
+        transform: none !important;
+    }
+    
+    /* Melhores tamanhos de toque para mobile */
+    .nav-links a {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .portfolio-btn {
+        min-height: 44px;
+        padding: 12px 24px;
+    }
+    
+    .social-link {
+        min-width: 44px;
+        min-height: 44px;
+    }
+} 
 } 

@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initActiveNavigation();
     addScrollToTopFunctionality();
     initProjectClicks();
+    initYearNavigation();
 });
 
 // ====================================================
@@ -630,6 +631,48 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ====================================================
+// YEAR NAVIGATION
+// ====================================================
+function initYearNavigation() {
+    const yearButtons = document.querySelectorAll('.year-btn');
+    
+    yearButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetYear = this.dataset.year;
+            
+            // Encontrar o primeiro item da timeline do ano
+            const targetItem = document.querySelector(`.timeline-item[data-year="${targetYear}"]`);
+            
+            if (targetItem) {
+                // Calcular offset para posicionar melhor
+                const headerHeight = 120; // Altura do header fixo
+                const elementPosition = targetItem.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - headerHeight;
+                
+                // Smooth scroll para o item
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Adicionar destaque temporário
+                targetItem.classList.add('highlighted');
+                setTimeout(() => {
+                    targetItem.classList.remove('highlighted');
+                }, 3000);
+                
+                // Track interaction
+                trackTimelineInteraction('year_navigation', 'timeline', targetYear);
+            } else {
+                console.log(`Projeto do ano ${targetYear} não encontrado`);
+                // Mostrar mensagem se não encontrar
+                showProjectMessage(`Projeto de ${targetYear}`);
+            }
+        });
+    });
+}
+
+// ====================================================
 // ANALYTICS E TRACKING
 // ====================================================
 function trackTimelineInteraction(action, category, label) {
@@ -666,6 +709,13 @@ document.addEventListener('DOMContentLoaded', function() {
         card.addEventListener('click', function() {
             const title = this.querySelector('.project-title').textContent;
             trackTimelineInteraction('project_view', 'timeline', title);
+        });
+    });
+    
+    // Track year navigation clicks
+    document.querySelectorAll('.year-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            trackTimelineInteraction('year_click', 'navigation', this.dataset.year);
         });
     });
 });

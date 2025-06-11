@@ -5,6 +5,21 @@
 // Variáveis globais para performance
 let lastScrollY = 0;
 let isScrolling = false;
+let scrollTicking = false;
+
+// Throttle function para otimizar performance
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
 
 // Aguardar carregamento da página
 window.addEventListener('load', function() {
@@ -104,21 +119,14 @@ function initButtonAnimations() {
 }
 
 // ====================================================
-// ANIMAÇÕES DE SCROLL
+// ANIMAÇÕES DE SCROLL OTIMIZADAS
 // ====================================================
 function initScrollAnimations() {
     const header = document.querySelector('.header');
     
     if (!header) return;
     
-    // Otimizar scroll com requestAnimationFrame
-    window.addEventListener('scroll', function() {
-        if (!isScrolling) {
-            requestAnimationFrame(updateScrollEffects);
-            isScrolling = true;
-        }
-    });
-    
+    // Função otimizada para atualizações de scroll
     function updateScrollEffects() {
         const currentScrollY = window.scrollY;
         
@@ -139,8 +147,18 @@ function initScrollAnimations() {
         }
         
         lastScrollY = currentScrollY;
-        isScrolling = false;
+        scrollTicking = false;
     }
+    
+    // Throttled scroll event listener
+    const throttledScrollHandler = throttle(() => {
+        if (!scrollTicking) {
+            requestAnimationFrame(updateScrollEffects);
+            scrollTicking = true;
+        }
+    }, 10);
+    
+    window.addEventListener('scroll', throttledScrollHandler, { passive: true });
 }
 
 // ====================================================
@@ -183,7 +201,7 @@ function initScrollReveal() {
 }
 
 // ====================================================
-// SCROLL TO TOP OTIMIZADO
+// SCROLL TO TOP MELHORADO
 // ====================================================
 function initScrollToTop() {
     const scrollToTopBtn = document.querySelector('#scrollToTop');
@@ -197,26 +215,17 @@ function initScrollToTop() {
         const shouldShow = window.scrollY > 300;
         
         if (shouldShow && !isVisible) {
-            scrollToTopBtn.style.opacity = '1';
-            scrollToTopBtn.style.visibility = 'visible';
-            scrollToTopBtn.style.transform = 'translateY(0)';
+            scrollToTopBtn.classList.add('show');
             isVisible = true;
         } else if (!shouldShow && isVisible) {
-            scrollToTopBtn.style.opacity = '0';
-            scrollToTopBtn.style.visibility = 'hidden';
-            scrollToTopBtn.style.transform = 'translateY(20px)';
+            scrollToTopBtn.classList.remove('show');
             isVisible = false;
         }
     }
     
-    // Throttle scroll event
-    let scrollTimeout;
-    window.addEventListener('scroll', function() {
-        if (scrollTimeout) {
-            clearTimeout(scrollTimeout);
-        }
-        scrollTimeout = setTimeout(toggleScrollButton, 100);
-    });
+    // Throttled scroll event para o botão
+    const throttledScrollToTop = throttle(toggleScrollButton, 100);
+    window.addEventListener('scroll', throttledScrollToTop, { passive: true });
     
     // Click handler
     scrollToTopBtn.addEventListener('click', function() {
@@ -250,6 +259,7 @@ function initActiveNavigation() {
         if (
             (currentPage === 'index.html' && (href === 'index.html' || href === '#home')) ||
             (currentPage === 'aboutme.html' && href === 'aboutme.html') ||
+            (currentPage === 'timeline.html' && href === 'timeline.html') ||
             (currentPage === 'contato.html' && href === 'contato.html') ||
             (currentPage === 'comece-agora.html' && href === 'comece-agora.html')
         ) {
@@ -292,17 +302,16 @@ function initPerformanceOptimizations() {
                 }
             `;
             document.head.appendChild(style);
+        } else {
+            document.body.classList.remove('mobile-device');
         }
     }
     
     optimizeForMobile();
     
     // Debounced resize handler
-    let resizeTimeout;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(optimizeForMobile, 250);
-    });
+    const debouncedResize = throttle(optimizeForMobile, 250);
+    window.addEventListener('resize', debouncedResize);
     
     // Scroll suave para links âncora
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -328,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const style = document.createElement('style');
         style.id = 'optimizedStyles';
         style.textContent = `
-            /* Scroll to top button */
+            /* Scroll to top button optimizado */
             .scroll-to-top {
                 position: fixed;
                 bottom: 30px;
@@ -342,7 +351,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 cursor: pointer;
                 z-index: 1000;
                 backdrop-filter: blur(10px);
-                transition: all 0.3s ease;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -351,14 +360,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 transform: translateY(20px);
             }
             
+            .scroll-to-top.show {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+            
             .scroll-to-top:hover {
                 background: rgba(255, 255, 255, 0.2);
                 border-color: rgba(255, 255, 255, 0.4);
+                transform: translateY(-3px) scale(1.05);
             }
             
             .scroll-to-top svg {
                 width: 20px;
                 height: 20px;
+                transition: transform 0.3s ease;
+            }
+            
+            .scroll-to-top:hover svg {
+                transform: translateY(-2px);
             }
             
             /* Navegação ativa */
@@ -372,10 +393,10 @@ document.addEventListener('DOMContentLoaded', function() {
             .js-enabled .hero-content {
                 opacity: 0;
                 transform: translateY(30px);
-                transition: all 0.8s ease;
+                transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             }
             
-            /* Responsivo */
+            /* Responsivo melhorado */
             @media (max-width: 768px) {
                 .scroll-to-top {
                     bottom: 20px;
@@ -388,6 +409,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     width: 18px;
                     height: 18px;
                 }
+                
+                /* Reduzir animações em mobile */
+                .mobile-device * {
+                    animation-duration: 0.3s !important;
+                    transition-duration: 0.3s !important;
+                }
             }
             
             /* Reduzir movimento para acessibilidade */
@@ -396,6 +423,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     animation-duration: 0.01ms !important;
                     animation-iteration-count: 1 !important;
                     transition-duration: 0.01ms !important;
+                }
+            }
+            
+            /* Performance otimizada para touch devices */
+            @media (hover: none) and (pointer: coarse) {
+                .nav-links a:hover,
+                .portfolio-btn:hover,
+                .cta-btn:hover,
+                .social-link:hover {
+                    transform: none !important;
                 }
             }
         `;
