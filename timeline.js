@@ -298,24 +298,27 @@ function initProjectClicks() {
     
     clickableProjects.forEach(project => {
         project.addEventListener('click', function(e) {
-            e.preventDefault();
-            
             const timelineItem = this.closest('.timeline-item');
+            const isWeb2025 = timelineItem && timelineItem.dataset.year === '2025' && timelineItem.dataset.category.includes('web');
+
+            // Se for subprojeto de desenvolvimento web e clicou em um link interno, deixa o link funcionar normalmente
+            if (isWeb2025 && e.target.closest('a.project-link')) {
+                // Não faz nada, deixa o link seguir
+                return;
+            }
+
+            e.preventDefault();
             const projectUrl = timelineItem.dataset.projectUrl;
             const projectTitle = this.querySelector('.project-title').textContent;
-            
             // Track click event
             trackTimelineInteraction('project_click', 'timeline', projectTitle);
-            
             // Verificar se há URL definida
             if (projectUrl && projectUrl !== '#') {
                 // Adicionar efeito visual de clique
                 this.style.transform = 'translateY(-3px) scale(0.98)';
-                
                 setTimeout(() => {
                     // Abrir em nova aba
                     window.open(projectUrl, '_blank', 'noopener,noreferrer');
-                    
                     // Resetar transform
                     this.style.transform = '';
                 }, 150);
